@@ -22,9 +22,12 @@ const playersSlice = createSlice({
     name: "players",
     initialState: initialState,
     reducers: {
-        addPlayer: (state, action) => {
-            state.players.push({
-                name: action.payload,
+        startNewGame: (state, action) => {
+            console.log("startNewGame", action.payload)
+            state.players = []
+            for (let player of action.payload) {
+                state.players.push({
+                name: player,
                 25: 0,
                 20: 0,
                 19: 0,
@@ -34,6 +37,10 @@ const playersSlice = createSlice({
                 15: 0,
                 points: 0
             })
+            }
+            state.started = true;
+            state.currentPlayer = 0;
+            state.turns = 1;
         },
         deletePlayer: (state, action) => {
             state.players = state.players.filter((player) => player.name != action.payload);
@@ -41,12 +48,6 @@ const playersSlice = createSlice({
         },
         setCurrentPlayer: (state, action) => {
             state.currentPlayer = action.payload;
-            return state;
-        },
-        start: (state) => {
-            state.started = true;
-            state.currentPlayer = 0;
-            state.turns = 1;
             return state;
         },
         validateLaunch: (state) => {
@@ -109,27 +110,9 @@ const playersSlice = createSlice({
             state.currentLaunch = state.currentLaunch.filter(launch => launch.id != action.payload)
             return state;
         },
-        init: (state) => {
-            state.players.map((player => {
-                player.points = 0;
-                player[25] = 0;
-                player[20] = 0;
-                player[19] = 0;
-                player[18] = 0;
-                player[17] = 0;
-                player[16] = 0;
-                player[15] = 0;
-            }))
-            state.currentPlayer = -1;
-            state.turns = 0;
-            state.nbLaunch = 0;
-            state.currentLaunch = [];
-            state.started = false;
-            return state;
-        },
     }
 }) 
 
 export default playersSlice
 
-export const { addPlayer, deletePlayer, setCurrentPlayer, start, validateLaunch, addCurrentLaunch, deleteLaunch, init } = playersSlice.actions;
+export const { deletePlayer, setCurrentPlayer, startNewGame, validateLaunch, addCurrentLaunch, deleteLaunch } = playersSlice.actions;

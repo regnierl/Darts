@@ -1,10 +1,10 @@
 import { useDispatch } from "react-redux";
-import { showAbout } from "../../../redux/Modals";
+import { showAboutPopup } from "../../../redux/Modals";
 
-function About() {
+function AboutPopup() {
 
     const dispatch = useDispatch()
-    const handleCloseDialog = () => { dispatch(showAbout(false)); }; 
+    const handleCloseDialog = () => { dispatch(showAboutPopup(false)); }; 
 
     return (
         <>
@@ -19,4 +19,4 @@ function About() {
     )
 }
 
-export default About
+export default AboutPopup

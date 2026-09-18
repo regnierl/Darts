@@ -1,20 +1,20 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState: {
-    showNewPlayer: boolean,
+    startNewGame: boolean,
     showAbout: boolean
 } = {
-    showNewPlayer: false,
+    startNewGame: false,
     showAbout: false
 }
 const modalsSlice = createSlice({
     name: "modals",
     initialState: initialState,
     reducers: {
-        showNewPlayer: (state, action) => {
-            state.showNewPlayer = action.payload
+        showNewGamePopup: (state, action) => {
+            state.startNewGame = action.payload
         },
-        showAbout: (state, action) => {
+        showAboutPopup: (state, action) => {
             state.showAbout = action.payload
         }
     }
@@ -22,4 +22,4 @@ const modalsSlice = createSlice({
 
 export default modalsSlice
 
-export const { showNewPlayer, showAbout } = modalsSlice.actions;
+export const { showNewGamePopup: showNewGamePopup, showAboutPopup: showAboutPopup } = modalsSlice.actions;
