@@ -1,0 +1,55 @@
+.column {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    
+}
+
+.row {
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    align-items: center;
+    
+}
+
+.top {
+    align-items: start;
+}
+
+.size {
+    font-size: 60px;
+}
+
+.width {
+    min-width: 250px;
+}
+
+.max-width {
+    width: 100%;
+}
+
+.hover-div {
+    position: relative;
+  }
+  
+  .hidden-button {
+    display: none;
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin-top: 10px;
+  }
+  
+  .hover-div:hover .hidden-button {
+    display: block;
+    background-color: transparent;
+  }
+
+  .selected {
+    border: 10px solid royalblue;
+    margin-top: -10px;
+    border-radius: 10px;
+  }
+  

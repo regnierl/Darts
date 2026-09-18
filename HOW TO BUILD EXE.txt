@@ -1,0 +1,15 @@
+LANCER EN LOCAL:
+    npm run dev
+
+FAIRE LE BUILD DEV:
+
+    Ouvrir cmd en administrateur
+
+    npm run build
+
+    changer dans dist/index.html:
+        enlever / avant assetss sur les lignes 8 et 9
+
+    npm run buildexe
+
+    récupérer le répertoire /dist/win-unpacked

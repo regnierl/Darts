@@ -1,0 +1,41 @@
+.column {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    
+}
+
+.row {
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    align-items: center;
+    
+}
+
+.top {
+    align-items: start;
+}
+
+.size {
+    font-size: 60px;
+}
+
+.empty-div { 
+    min-height: 91px; 
+    width: 100%;
+}
+
+.margin-right {
+    margin-right: 20px;
+}
+
+.tour {
+    font-size: 70px;
+    margin-bottom: 20px;
+}
+
+.table-container {
+    margin-bottom: 100px;
+}
