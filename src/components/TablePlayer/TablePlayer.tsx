@@ -1,7 +1,6 @@
 import './TablePlayer.css'
 import { Player } from '../../models/player'
-import { useDispatch, useSelector } from 'react-redux';
-import { deletePlayer } from '../../redux/players';
+import { useSelector } from 'react-redux';
 
 
 interface TablePlayerProps {
@@ -9,7 +8,6 @@ interface TablePlayerProps {
 }
 
 function TablePlayer( props: TablePlayerProps ) {
-    const dispatch = useDispatch()
     const state = useSelector((state: any) => state.players)
     const selected: string = state.players[state.currentPlayer]?.name === props.player.name ? 'selected' : '';
     const getColor = (value: number) =>  {
