@@ -1,17 +1,103 @@
 .header {
-    background-color: #333;
+    background-color: var(--header-background);
     height: 60px;
     display: flex; 
     align-items: center;
     justify-content: center;
-    border-bottom: 5px grey solid;
+    border-bottom: 5px var(--accent-color) solid;
 }
 
 .button-header {
     margin-left: 20px;
 }
 
-.right-btn { 
-    position: absolute; 
-    right: 0; 
+.header-menu {
+    position: absolute;
+    right: 16px;
+}
+
+.menu-button {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 42px;
+    padding: 8px;
+}
+
+.menu-button span {
+    display: block;
+    width: 20px;
+    height: 2px;
+    border-radius: 2px;
+    background-color: currentColor;
+}
+
+.header-menu-content {
+    position: absolute;
+    top: calc(100% + 8px);
+    right: 0;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    min-width: 150px;
+    padding: 10px;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    background-color: var(--surface-background);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+}
+
+.header-menu-content button {
+    width: 100%;
+}
+
+.theme-option {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 0.6em 0.75em;
+    color: var(--text-color);
+    cursor: pointer;
+    white-space: nowrap;
+}
+
+.theme-option input {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.theme-switch {
+    position: relative;
+    display: inline-block;
+    width: 38px;
+    height: 22px;
+    border-radius: 22px;
+    background-color: var(--border-color);
+    transition: background-color 0.2s ease;
+}
+
+.theme-switch::after {
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background-color: var(--button-background);
+    content: '';
+    transition: transform 0.2s ease;
+}
+
+.theme-option input:checked + .theme-switch {
+    background-color: var(--accent-color);
+}
+
+.theme-option input:checked + .theme-switch::after {
+    transform: translateX(16px);
 }

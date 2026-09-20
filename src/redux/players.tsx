@@ -3,6 +3,7 @@ import { Player } from "../models/player";
 import { Launch } from "../models/launch";
 
 const initialState: {
+    gameType: string,
     players: Player[],
     currentPlayer : number,
     started: boolean,
@@ -10,6 +11,7 @@ const initialState: {
     nbLaunch: number;
     turns: number;
 } = {
+    gameType: 'cricket',
     players: [],
     currentPlayer: -1,
     started: false,
@@ -23,9 +25,9 @@ const playersSlice = createSlice({
     initialState: initialState,
     reducers: {
         startNewGame: (state, action) => {
-            console.log("startNewGame", action.payload)
+            state.gameType = action.payload.gameType;
             state.players = []
-            for (let player of action.payload) {
+            for (let player of action.payload.playerNames) {
                 state.players.push({
                 name: player,
                 25: 0,
@@ -35,7 +37,7 @@ const playersSlice = createSlice({
                 17: 0,
                 16: 0,
                 15: 0,
-                points: 0
+                points: state.gameType === 'cricket' ? 0 : state.gameType === '501' ? 501 : 301
             })
             }
             state.started = true;
@@ -53,41 +55,51 @@ const playersSlice = createSlice({
         validateLaunch: (state) => {
             // Calculate launch
             const player = state.players[state.currentPlayer];
-            state.currentLaunch.map((launch : Launch) => {
-                if (launch.multiplicator !== 0) {
-                    switch (launch.value) {
-                        case 25:
-                        case 20:
-                        case 19:
-                        case 18:
-                        case 17:
-                        case 16:
-                        case 15:
-                            player[launch.value] += launch.multiplicator;
-                            if (player[launch.value] > 3) {
-                                // Add points to others players
-                                state.players.map(p => {
-                                    if (p.name !== player.name) {
-                                        switch (launch.value) {
-                                            case 25:
-                                            case 20:
-                                            case 19:
-                                            case 18:
-                                            case 17:
-                                            case 16:
-                                            case 15:
-                                                if (p[launch.value] < 3) {
-                                                    p.points += (player[launch.value] - 3) * launch.value;
-                                                }
+            if (state.gameType === 'cricket') {
+                state.currentLaunch.map((launch : Launch) => {
+                    if (launch.multiplicator !== 0) {
+                        switch (launch.value) {
+                            case 25:
+                            case 20:
+                            case 19:
+                            case 18:
+                            case 17:
+                            case 16:
+                            case 15:
+                                player[launch.value] += launch.multiplicator;
+                                if (player[launch.value] > 3) {
+                                    // Add points to others players
+                                    state.players.map(p => {
+                                        if (p.name !== player.name) {
+                                            switch (launch.value) {
+                                                case 25:
+                                                case 20:
+                                                case 19:
+                                                case 18:
+                                                case 17:
+                                                case 16:
+                                                case 15:
+                                                    if (p[launch.value] < 3) {
+                                                        p.points += (player[launch.value] - 3) * launch.value;
+                                                    }
+                                            }
                                         }
-                                    }
-                                })
-                                player[launch.value] = 3;
-                            }
-                            break;
+                                    })
+                                    player[launch.value] = 3;
+                                }
+                                break;
+                        }
                     }
+                })
+            } else {
+                let totalPoints = 0;
+                state.currentLaunch.map((launch : Launch) => {
+                    totalPoints += launch.value * launch.multiplicator;
+                })
+                if (player.points - totalPoints >= 0) {
+                    state.players[state.currentPlayer].points -= totalPoints;
                 }
-            })
+            }
             // END Calculate launch
 
 

@@ -7,6 +7,7 @@ import "./NewPlayer.css";
 function NewGamePopup() {
     const dispatch = useDispatch()
     const [playerNames, setPlayerNames] = useState(['']); 
+    const [gameType, setGameType] = useState('cricket');
     
     const handleCloseDialog = () => { dispatch(showNewGamePopup(false)); }; 
     const addNewPlayer = () => {
@@ -26,7 +27,7 @@ function NewGamePopup() {
             return;
         }
 
-        dispatch(startNewGame(names));
+        dispatch(startNewGame({ gameType: gameType, playerNames: names }));
         handleCloseDialog(); 
     };
     const handleChange = (index: number, value: string) => {
@@ -39,6 +40,11 @@ function NewGamePopup() {
         <div className="dialog"> 
             <div className="dialog-content"> 
                 <h2>Nouvelle partie</h2>
+                <select value={gameType} onChange={event => setGameType(event.target.value)}>
+                    <option value="cricket">Cricket</option>
+                    <option value="501">501</option>
+                    <option value="301">301</option>
+                </select>
                 {playerNames.map((name, index) => (
                     <div className="new-player-row" key={index}>
                         <label htmlFor={`player-${index}`}>Joueur {index + 1}</label>
@@ -51,7 +57,7 @@ function NewGamePopup() {
                             autoFocus={index === playerNames.length - 1}
                         />
                         {playerNames.length > 1 && (
-                            <button type="button" onClick={() => removePlayer(index)}>Supprimer</button>
+                            <button type="button" onClick={() => removePlayer(index)}>X</button>
                         )}
                     </div>
                 ))}

@@ -1,10 +1,10 @@
 .footer {
-    background-color: #333;
+    background-color: var(--header-background);
     height: 60px;
     display: flex; 
     align-items: center;
     justify-content: center;
-    border-top: 5px grey solid;
+    border-top: 5px var(--accent-color) solid;
 }
 
 .button-footer {

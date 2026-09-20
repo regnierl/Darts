@@ -2,7 +2,7 @@
 	display: flex;
 	align-items: center;
 	gap: 8px;
-	margin-bottom: 10px;
+	margin-bottom: 16px;
 }
 
 .new-player-row label {
@@ -11,4 +11,26 @@
 
 .new-player-row input {
 	min-width: 180px;
+	padding: 8px;
+	font-size: 1rem;
+}
+
+.new-player-row button[type="button"] {
+	width: 32px;
+	height: 32px;
+	padding: 0;
+	border: 1px solid #d32f2f;
+	border-radius: 50%;
+	background: transparent;
+	color: #d32f2f;
+	font-weight: bold;
+	font-size: 1rem;
+	line-height: 1;
+}
+
+.dialog-content select {
+	min-width: 180px;
+	padding: 8px;
+	font-size: 1rem;
+	margin-bottom: 16px;
 }
